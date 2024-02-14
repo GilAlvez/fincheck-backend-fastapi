@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "~=0.109.2"
+uvicorn = "~=0.27.1"
+httpx = "~=0.26.0"
+
+[dev-packages]
+pytest = "*"
+flake8 = "*"
+black = "*"
+
+[scripts]
+dev = "docker compose up --build"
+test = "pytest"
+lint = "flake8"
+format = "black ."
+
+[requires]
+python_version = "3.12"

@@ -1,0 +1,13 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+    },
+    "files.exclude": {
+        "**/.venv": false
+    },
+    "search.exclude": {
+        "**/.venv": true
+    }
+}
