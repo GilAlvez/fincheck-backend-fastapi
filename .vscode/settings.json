@@ -4,6 +4,9 @@
         "editor.formatOnSave": true,
         "editor.formatOnPaste": true,
     },
+    "editor.fontFamily": "JetBrains Mono",
+    "explorer.compactFolders": false,
+    "workbench.tree.indent": 15,
     "files.exclude": {
         "**/.venv": false
     },

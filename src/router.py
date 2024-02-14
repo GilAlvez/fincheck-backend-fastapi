@@ -1,19 +1,13 @@
 from fastapi import APIRouter
-from pydantic import BaseModel
 
-
-class IndexResponseDTO(BaseModel):
-    message: str
+from modules.auth.controllers.auth_controller import AuthController
+from modules.auth.dtos.sign_in_response_dto import SignInResponseDTO
 
 
 router = APIRouter(prefix="/api")
 
 
-@router.get("/v1/", response_model=IndexResponseDTO)
-async def index():
-    return {"message": "hello world"}
-
-
-@router.websocket("/ws")
-async def open_connection():
-    pass
+@router.get("/v1/auth/sign-in", response_model=SignInResponseDTO)
+async def sign_in():
+    response = AuthController.sign_in()
+    return response
