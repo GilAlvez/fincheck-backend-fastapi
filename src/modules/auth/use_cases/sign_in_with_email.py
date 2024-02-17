@@ -1,6 +1,6 @@
-from modules.users.repositories.users_repository import UsersRepository
-from modules.auth.adapters.string_hasher_adapter import StringHasherAdapter
-from modules.auth.use_cases.generate_access_token import GenerateAccessToken
+from src.modules.users.repositories.users_repository import UsersRepository
+from src.modules.auth.adapters.string_hasher_adapter import StringHasherAdapter
+from src.modules.auth.use_cases.generate_access_token import GenerateAccessToken
 
 
 class SignInWithEmail:

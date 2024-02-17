@@ -1,6 +1,6 @@
-from modules.auth.dtos.sign_in_response_dto import SignInResponseDTO
-from modules.auth.dtos.sing_in_params_dto import SignInParamsDTO
-from modules.auth.use_cases.sign_in_with_email import SignInWithEmail
+from src.modules.auth.dtos.sign_in_response_dto import SignInResponseDTO
+from src.modules.auth.dtos.sing_in_params_dto import SignInParamsDTO
+from src.modules.auth.use_cases.sign_in_with_email import SignInWithEmail
 
 
 class AuthController:

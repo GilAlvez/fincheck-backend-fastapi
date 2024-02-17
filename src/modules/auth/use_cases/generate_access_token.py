@@ -1,6 +1,6 @@
-from modules.auth.use_cases.sign_in_with_email import User
+from src.modules.auth.entities.user import User
 
 
 class GenerateAccessToken:
-    def execute(user: User) -> str:
+    def execute(self, user: User) -> str:
         return "token"

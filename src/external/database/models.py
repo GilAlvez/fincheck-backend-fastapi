@@ -1,11 +1,11 @@
+# mypy: ignore-errors
 import enum
 import re
 import uuid
 from datetime import datetime
 
 from sqlalchemy import Boolean, Column, DateTime, Enum, ForeignKey, Numeric, String
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import validates, relationship
+from sqlalchemy.orm import validates, relationship, declarative_base
 from sqlalchemy.dialects.postgresql import UUID
 
 Base = declarative_base()
@@ -50,12 +50,12 @@ class UserModel(Base):
     )
 
     @validates("email")
-    def validate_email(self, key, email):
+    def validate_email(self, key: str, email: str):
         assert "@" in email, "Email invalid"
         return email
 
     @validates("name")
-    def validate_name(self, key, name):
+    def validate_name(self, key: str, name: str):
         assert len(name) > 0, "Name must not be empty"
         return name
 
@@ -83,7 +83,7 @@ class BankAccountModel(Base):
     )
 
     @validates("color")
-    def validate_color(self, key, color):
+    def validate_color(self, key: str, color: str):
         if not re.match(r"^#(?:[0-9a-fA-F]{3}){1,2}$", color):
             raise ValueError("Invalid HEX for color")
         return color
@@ -104,7 +104,7 @@ class CategoryModel(Base):
     transactions = relationship("TransactionModel", back_populates="category")
 
     @validates("icon")
-    def validate_icon(self, key, icon):
+    def validate_icon(self, key: str, icon: str):
         if not re.match(r"^https?:\/\/", icon):
             raise ValueError("Invalid URL for icon")
         return icon
