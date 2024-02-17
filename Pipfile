@@ -3,25 +3,29 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
-[packages]
-fastapi = "~=0.109.2"
-uvicorn = "~=0.27.1"
-httpx = "~=0.26.0"
-bcrypt = "~=4.1.2"
-sqlalchemy = "~=2.0.27"
-
-[dev-packages]
-pytest = "*"
-flake8 = "*"
-black = "*"
-mypy = "*"
-
 [scripts]
 dev = "docker compose up --build"
 test = "pytest"
 lint = "flake8"
 format = "black ."
 typecheck = "mypy ."
+migrate = "alembic upgrade head"
+make_migration = "alembic revision --autogenerate -m"
+
+[packages]
+fastapi = "~=0.109.2"
+uvicorn = "~=0.27.1"
+httpx = "~=0.26.0"
+bcrypt = "~=4.1.2"
+sqlalchemy = "~=2.0.27"
+psycopg2-binary = "~=2.9.9"
+
+[dev-packages]
+pytest = "*"
+flake8 = "*"
+black = "*"
+mypy = "*"
+alembic = "*"
 
 [requires]
 python_version = "3.12"
