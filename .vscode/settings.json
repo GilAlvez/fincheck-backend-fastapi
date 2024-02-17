@@ -4,20 +4,16 @@
         "editor.formatOnSave": true,
         "editor.formatOnPaste": true,
     },
-
     "editor.fontFamily": "JetBrains Mono",
     "explorer.compactFolders": false,
     "workbench.tree.indent": 15,
-    "files.exclude": {
-        "**/.venv": false
-    },
     "search.exclude": {
         "**/.venv": true
     },
-    "python.analysis.typeCheckingMode": "strict",
+    "python.analysis.importFormat": "absolute",
+    "python.analysis.typeCheckingMode": "standard",
     "python.analysis.autoFormatStrings": true,
     "python.analysis.autoImportCompletions": true,
-    "python.analysis.addImport.exactMatchOnly": true,
     "python.analysis.diagnosticMode": "workspace",
     "mypy.enabled": true,
     "mypy.dmypyExecutable": "${workspaceFolder}/.venv/bin/dmypy"
