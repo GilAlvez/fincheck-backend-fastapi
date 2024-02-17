@@ -14,12 +14,14 @@ sqlalchemy = "~=2.0.27"
 pytest = "*"
 flake8 = "*"
 black = "*"
+mypy = "*"
 
 [scripts]
 dev = "docker compose up --build"
 test = "pytest"
 lint = "flake8"
 format = "black ."
+typecheck = "mypy ."
 
 [requires]
 python_version = "3.12"
