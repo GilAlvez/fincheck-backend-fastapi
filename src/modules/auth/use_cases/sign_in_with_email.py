@@ -1,3 +1,5 @@
+from src.shared.exceptions.invalid_password_exception import InvalidPasswordException
+from src.shared.exceptions.user_not_found_exception import UserNotFoundException
 from src.modules.users.repositories.users_repository import UsersRepository
 from src.modules.auth.adapters.string_hasher_adapter import StringHasherAdapter
 from src.modules.auth.use_cases.generate_access_token import GenerateAccessToken
@@ -15,15 +17,15 @@ class SignInWithEmail:
         self.string_hasher_adapter = string_hasher_adapter
 
     def execute(self, email: str, password: str) -> str:
-        user = self.users_repository.find_by_email(email)
+        user = self.users_repository.find_unique(by_email=email)
 
         if not user:
-            return "InvalidCred"
+            raise UserNotFoundException("Email is not registered")
 
         is_valid_password = self.string_hasher_adapter.compare(password, user.password)
 
         if not is_valid_password:
-            return "InvalidCred"
+            raise InvalidPasswordException()
 
         token: str = self.generate_access_token.execute(user)
 
