@@ -24,3 +24,11 @@ class UsersRepository:
             return None
         else:
             return User(**unique_user)
+
+    def create(self, name: str, email: str, password: str) -> User | None:
+        created_user = self.users_data_source.create_user(name, email, password)
+        print(f"DATASOURCE RESULT: {created_user}")
+        if not created_user:
+            return None
+        else:
+            return User(**created_user)

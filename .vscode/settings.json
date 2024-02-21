@@ -10,7 +10,7 @@
     "search.exclude": {
         "**/.venv": true
     },
-    "python.analysis.importFormat": "absolute",
+        "python.analysis.importFormat": "absolute",
     "python.analysis.typeCheckingMode": "standard",
     "python.analysis.autoFormatStrings": true,
     "python.analysis.autoImportCompletions": true,

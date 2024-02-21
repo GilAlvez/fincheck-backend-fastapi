@@ -1,3 +1,4 @@
+from src.modules.auth.dtos.sing_in_params_dto import SignInParamsDTO
 from src.shared.exceptions.invalid_password_exception import InvalidPasswordException
 from src.shared.exceptions.user_not_found_exception import UserNotFoundException
 from src.modules.users.repositories.users_repository import UsersRepository
@@ -16,17 +17,18 @@ class SignInWithEmail:
         self.generate_access_token = generate_access_token
         self.string_hasher_adapter = string_hasher_adapter
 
-    def execute(self, email: str, password: str) -> str:
-        user = self.users_repository.find_unique(by_email=email)
-
+    def execute(self, params: SignInParamsDTO) -> str:
+        user = self.users_repository.find_unique(by_email=params.email)
         if not user:
             raise UserNotFoundException("Email is not registered")
 
-        is_valid_password = self.string_hasher_adapter.compare(password, user.password)
+        is_valid_password = self.string_hasher_adapter.compare(
+            params.password, user.password
+        )
 
         if not is_valid_password:
             raise InvalidPasswordException()
 
-        token: str = self.generate_access_token.execute(user)
+        token = self.generate_access_token.execute(user)
 
         return token

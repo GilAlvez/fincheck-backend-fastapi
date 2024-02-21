@@ -1,4 +1,6 @@
 from dependency_injector import containers, providers
+from src.modules.auth.controllers.auth_controller import AuthController
+from src.modules.auth.use_cases.sign_up_with_email import SignUpWithEmail
 from src.shared.configs.settings import Settings
 from src.modules.auth.use_cases.validate_access_token import ValidateAccessToken
 from src.modules.auth.adapters.string_hasher_adapter import StringHasherAdapter
@@ -35,11 +37,24 @@ class Container(containers.DeclarativeContainer):
         secret_key=settings().JWT_SECRET_KEY,
         algorithm=settings().app_config.jwt_algorithm,
     )
-    sing_in_with_email = providers.Singleton(
+    sign_in_with_email = providers.Singleton(
         SignInWithEmail,
         users_repository=users_repository,
         generate_access_token=generate_access_token,
         string_hasher_adapter=string_hasher_adapter,
+    )
+    sign_up_with_email = providers.Singleton(
+        SignUpWithEmail,
+        users_repository=users_repository,
+        generate_access_token=generate_access_token,
+        string_hasher_adapter=string_hasher_adapter,
+    )
+
+    # Controllers
+    auth_controller = providers.Factory(
+        AuthController,
+        sign_in_with_email=sign_in_with_email,
+        sign_up_with_email=sign_up_with_email,
     )
 
 

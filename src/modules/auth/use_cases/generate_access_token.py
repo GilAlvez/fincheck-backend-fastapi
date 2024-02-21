@@ -16,7 +16,7 @@ class GenerateAccessToken:
 
     def execute(self, user: User) -> str:
         payload = {
-            "sub": user.id,
+            "sub": str(user.id),
             "iat": datetime.utcnow(),
             "exp": datetime.utcnow() + self.expires_in,
         }
